@@ -1,9 +1,6 @@
 let fs = require('fs')
 
-let content = fs.readFileSync('./frases.md', 'UTF-8')
-console.log(content)
-
-fs.readFile('./frases.md', 'UTF-8', (err, content) => {
-    if (err) console.log(err.message)
-    console.log(content)
-})
+fs.appendFile('testFile.txt', 'Contenido para el fichero', (err) => {
+    if (err) throw err
+    console.log("Se han agregado datos al fichero")
+})  
