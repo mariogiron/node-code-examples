@@ -1,6 +1,15 @@
 let fs = require('fs')
+let stream = fs.createReadStream('./chat.log', 'UTF-8')
+let data = ""
 
-fs.appendFile('testFile.txt', 'Contenido para el fichero', (err) => {
-    if (err) throw err
-    console.log("Se han agregado datos al fichero")
-})  
+stream.once('data', () => {
+    console.log('Empieza a leer el fichero')
+})
+
+stream.on('data', (chunk) => {
+    data += chunk
+})
+
+stream.on('end', () => {
+    console.log(`Termina de leer el fichero ${data.length}`)
+})
